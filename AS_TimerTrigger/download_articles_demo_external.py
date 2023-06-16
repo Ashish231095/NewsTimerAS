@@ -148,7 +148,7 @@ def demo_main():
     conn.commit()
 
     cursor = conn.cursor()
-    cursor.execute("truncate table {target_table1}")
+    cursor.execute(f"truncate table {target_table1}")
 
     # Commit the changes
     conn.commit()
