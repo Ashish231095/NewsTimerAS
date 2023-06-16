@@ -80,6 +80,7 @@ def demo_main():
     # Specify the target table in Snowflake where you want to insert the data
     target_table1 = 'NEWS_API_DATA'
 
+
     # Replace NaN values with None in the DataFrame
     df.replace({np.nan: None}, inplace=True)
 
@@ -139,10 +140,15 @@ def demo_main():
         s.relevance, s.topic, s.topic_uri, s.title_cleaned, s.topic_original, s.relevance_class);
     """
     logging.info('Demo main executing')
-    print(merge_query)
     # Execute the merge query
     cursor = conn.cursor()
     cursor.execute(merge_query)
+
+    # Commit the changes
+    conn.commit()
+
+    cursor = conn.cursor()
+    cursor.execute("truncate table {target_table1}")
 
     # Commit the changes
     conn.commit()

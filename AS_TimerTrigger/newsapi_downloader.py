@@ -1,5 +1,6 @@
 import pandas as pd
 import os 
+import re
 from eventregistry import *
 from .helpers import get_current_timestamp
 #from dataloader import clean_string
